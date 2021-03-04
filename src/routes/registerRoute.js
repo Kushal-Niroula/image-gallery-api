@@ -2,6 +2,7 @@ const express =  require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const registerUser = require('../service/registerUser')
+const usernameValid = require('../middleware/usernameValid')
 router.use(express.json());
 
 router.use('/',(req,res,next)=>{
@@ -12,10 +13,9 @@ router.use('/',(req,res,next)=>{
   })
 
 })
+router.use('/',usernameValid);
 
 router.post('/',(req,res)=>{
-  console.log(req.body);
-  console.log("hello");
   registerUser({username:req.body.username,password:req.body.password});
   res.json({
     status:"success"

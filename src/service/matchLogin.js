@@ -2,6 +2,11 @@ const bcrypt = require('bcrypt');
 const knex= require('../db.js');
 const jwt = require('jsonwebtoken')
 
+/**
+*@param {req} object
+*@param {res} object
+* matches password and returns token to the frontend 
+*/
 function matchLogin(req,res){
 knex('users')
 .where({

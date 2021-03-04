@@ -1,7 +1,11 @@
 const knex = require("../db.js");
 
+/**
+*@param {req} object
+*@param {res} object
+*deletes the link of image with specific uuid from the database
+*/
 function deleteImage(req, res) {
-  console.log(req.body.id);
   knex("images")
     .where({
       uuid: req.body.id,
