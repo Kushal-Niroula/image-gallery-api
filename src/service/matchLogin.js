@@ -7,7 +7,7 @@ knex('users')
 .where({
   username:req.body.username
 })
-.select('password')
+.select('id','password')
 .then((result)=>{
   if(result.length == 1){
     bcrypt.compare(req.body.password,result[0].password,(err,matched)=>{
@@ -15,6 +15,7 @@ knex('users')
              jwt.sign(
                {
                  username: req.body.username,
+                 id:result[0].id
                },
                'secret',
                (err, token) => {
@@ -24,6 +25,7 @@ knex('users')
                  res.json({
                    logged:'success',
                    token: token,
+                   username:req.body.username,
                  });
                }
              );

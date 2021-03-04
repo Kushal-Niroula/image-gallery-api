@@ -1,7 +1,7 @@
 const express =  require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const registerUser = require('../models/registerUser')
+const registerUser = require('../service/registerUser')
 router.use(express.json());
 
 router.use('/',(req,res,next)=>{
@@ -18,7 +18,7 @@ router.post('/',(req,res)=>{
   console.log("hello");
   registerUser({username:req.body.username,password:req.body.password});
   res.json({
-    status:"success"  
+    status:"success"
   });
 }
 )

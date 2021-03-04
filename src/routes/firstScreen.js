@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 
 router.get('/',(req,res)=>{
   const authHeader= req.headers['authorization'];
-  console.log('[log] reached get request');
   jwt.verify(authHeader,'secret',(err,authData)=>{
     if(err){
       res.json({
@@ -14,7 +13,8 @@ router.get('/',(req,res)=>{
     }
     else{
       res.json({
-        isLogged:true
+        isLogged:true,
+        username:authData.username,
       })
     }
   }
