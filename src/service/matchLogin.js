@@ -1,11 +1,13 @@
 const bcrypt = require('bcrypt');
 const knex= require('../db.js');
 const jwt = require('jsonwebtoken')
+const {JWT_SECRET}= require('../env.js')
+const {BCRYPT_SALT}= require('../env.js')
 
 /**
 *@param {req} object
 *@param {res} object
-* matches password and returns token to the frontend 
+* matches password and returns token to the frontend
 */
 function matchLogin(req,res){
 knex('users')
@@ -22,7 +24,7 @@ knex('users')
                  username: req.body.username,
                  id:result[0].id
                },
-               'secret',
+               JWT_SECRET,
                (err, token) => {
                  if (err) {
                    throw err;

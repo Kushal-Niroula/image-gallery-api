@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const registerUser = require('../service/registerUser')
 const usernameValid = require('../middleware/usernameValid')
+const {BCRYPT_SALT} = require('../env.js')
 router.use(express.json());
 
 router.use('/',(req,res,next)=>{

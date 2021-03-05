@@ -5,12 +5,13 @@ const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const insertImage = require("../service/insertImage");
+const {JWT_SECRET} = require("../env.js")
 
 router.use(fileUpload());
 
 router.post("/", (req, res) => {
   let authHeader = req.headers["authorization"];
-  jwt.verify(authHeader, "secret", (err, authData) => {
+  jwt.verify(authHeader, JWT_SECRET, (err, authData) => {
     if (err) {
       res.json({
         status: "failed",

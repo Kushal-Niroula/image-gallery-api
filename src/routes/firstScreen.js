@@ -1,6 +1,7 @@
 const express= require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
+const {JWT_SECRET}= require('../env.js')
 
 
 router.get('/',(req,res)=>{
